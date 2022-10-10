@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PersonsComponent } from './pages/persons/persons.component';
+import { PersonComponent } from './pages/person/person.component';
 import { HttpClientModule, HttpClient  } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
@@ -20,6 +21,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CalendarModule} from 'primeng/calendar';
 import { WithUnsortDirective } from './with-unsort.directive';
+import {CardModule} from 'primeng/card';
+import { EditPersonComponent } from './component/edit-person/edit-person.component';
+
 
 
 
@@ -28,7 +32,10 @@ import { WithUnsortDirective } from './with-unsort.directive';
     AppComponent,
     HomeComponent,
     PersonsComponent,
-    WithUnsortDirective
+    WithUnsortDirective,
+    PersonComponent,
+    EditPersonComponent
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,9 @@ import { WithUnsortDirective } from './with-unsort.directive';
     InputTextModule,
     DropdownModule,
     BrowserAnimationsModule,
-    CalendarModule
+    CalendarModule,
+    CardModule,
+
 
   ],
   providers: [],

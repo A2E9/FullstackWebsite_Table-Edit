@@ -3,7 +3,6 @@
     #dt
     [columns]="selectedColumns"
     [value]="persons"
-    dataKey="id"
     responsiveLayout="scroll"
     [paginator]="true"
     [rows]="10"
@@ -11,6 +10,7 @@
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [globalFilterFields]="[cols[0].field, cols[1].field, cols[2].field]"
     appWithUnsort
+    selectionMode="single"  (onRowSelect)="onRowSelect($event)"
   >
     <ng-template pTemplate="caption">
       <p-multiSelect
@@ -54,19 +54,7 @@
         </th>
       </tr>
       <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field">
-          <p-columnFilter *ngSwitchCase="'geburtsdatum'" >
-            <ng-template pTemplate="filter" type="date">
-            <p-calendar
-              *ngSwitchCase="'geburtsdatum'"
-              [placeholder]="col.header"
-              dateFormat="dd.mm.yy"
-              (onSelect)="dt.filter(convertDate($event), 'geburtsdatum', 'equals')"
-              [style]="{ width: '135px' }"
-            ></p-calendar>
-            </ng-template>
-          </p-columnFilter>
-
+        <th *ngFor="let col of columns" [ngSwitch]="col.field" >
           <div
             *ngIf="
               !(
@@ -85,12 +73,26 @@
               [placeholder]="col.header"
             ></p-columnFilter>
           </div>
+          <p-columnFilter 
+          *ngSwitchCase="'geburtsdatum'" >
+            <ng-template pTemplate="filter" type="date">
+            <p-calendar
+              *ngSwitchCase="'geburtsdatum'"
+              [placeholder]="col.header"
+              dateFormat="dd.mm.yy"
+              (onSelect)="dt.filter(convertDate($event), 'geburtsdatum', 'equals')"
+              [style]="{ width: '135px' }"
+            ></p-calendar>
+            </ng-template>
+          </p-columnFilter>
+
+
           <p-multiSelect
             *ngSwitchCase="'nationalitaet'"
             placeholder="Nationalität"
             [options]="AllNationalitaet"
             [style]="{ 'max-width': '135px' }"
-            [(ngModel)]="selectedG"
+            
             selectedItemsLabel="{0} items selected"
             [style]="{ width: '100%' }"
             (onChange)="dt.filter($event.value, col.field, 'in')"
@@ -131,9 +133,9 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns" style="white-space: nowrap">
+    <ng-template pTemplate="body" let-rowData let-columns="columns" >
+      <tr >
+        <td *ngFor="let col of columns" style="white-space: nowrap"  [pSelectableRow]="rowData">
           {{ rowData[col.field] }}
         </td>
       </tr>

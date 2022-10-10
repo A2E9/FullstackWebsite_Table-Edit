@@ -1,0 +1,26 @@
+<main>
+
+    <p-card header="{{person.name}} {{person.vorname}}" subheader="User ID: {{person.id}}" [style]="{width: '450px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <img alt="CardPic" src="assets/kiwi.svg">
+        </ng-template>
+        <h1></h1>
+        <!-- anrede,name, vorname, geschlecht, nationalitaet, strasse, plz, ort, geburtsdatum, abteilung, familienstand, gehalt, iban, steuerklasse -->
+        <p>Land: {{person.nationalitaet}}</p>
+        <p>Adresse: {{person.strasse}} {{person.plz}} {{person.ort}}</p>
+        <p>Geburtsdatum: {{person.geburtsdatum}}</p>
+        <p>Abteilung: {{person.abteilung}}</p>
+        <p>Familienstand: {{person.familienstand}}</p>
+        <p>Gehalt: {{person.gehalt}}</p>
+        <p>IBAN: {{person.iban}}</p>
+        <p>Steuerklasse: {{person.steuerklasse}}</p>
+        
+    
+    
+        <ng-template pTemplate="footer" >
+            <p-button label="Edit" icon="pi pi-pencil" (onClick)="editPerson()" ></p-button>  
+            <!-- [routerLink]="['edit', person.id]" -->
+            <p-button label="Zurück" icon="pi pi-angle-double-right" styleClass="p-button-danger" [style]="{'margin-left': '.5em'}" (onClick)="lastPage()"></p-button>
+        </ng-template>
+    </p-card>
+</main>

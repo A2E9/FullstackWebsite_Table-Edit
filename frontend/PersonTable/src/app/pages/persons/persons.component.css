@@ -1,6 +1,7 @@
 main {
   /* background-color: rgb(29, 29, 29, 0.938); */
   /* margin: 0; */
+  padding: 100px;
 }
 
 /* :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {

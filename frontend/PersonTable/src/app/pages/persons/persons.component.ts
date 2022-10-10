@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { Table } from 'primeng/table';
 import { PersonsService } from '../../services/persons.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-persons',
@@ -15,15 +16,14 @@ export class PersonsComponent implements OnInit {
   allGeschlecht: {}[];
   selectedG!: [];
 
+
   _selectedColumns!: any[];
   AllSteuerklasse: {}[];
   @ViewChild('dt') table!: Table;
   allAnrede!: { label: string; value: string }[];
   AllNationalitaet: { label: string; value: string }[];
 
-  constructor(
-    private persServ: PersonsService
-  ) {
+  constructor(private persServ: PersonsService, private router: Router) {
     this.cols = [
       { field: 'id', header: 'ID' },
       { field: 'anrede', header: 'Anrede' },
@@ -96,7 +96,6 @@ export class PersonsComponent implements OnInit {
         );
       });
 
-      
       this.persons.forEach((person: any) => {
         person.gehalt = person.gehalt + ' €';
       });
@@ -138,4 +137,10 @@ export class PersonsComponent implements OnInit {
     const eventDate = moment($event).format('DD.MM.YYYY');
     return eventDate;
   }
+
+  
+  onRowSelect(event: any) {
+    this.router.navigate(['/person', event.data.id]);
+  }
+
 }
