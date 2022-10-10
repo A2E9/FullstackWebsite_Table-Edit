@@ -1,0 +1,27 @@
+main {
+  /* background-color: rgb(29, 29, 29, 0.938); */
+  /* margin: 0; */
+}
+
+/* :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  font-weight: 700;
+  color: #343a40;
+  background: #cfcfcf;
+}
+
+} */
+:host ::ng-deep .p-fluid .p-inputtext {
+  /* width: fit-content; */
+  width:135px;
+}
+:host ::ng-deep .p-datepicker{
+  width: 500px;
+  top:0;
+}
+
+:host ::ng-deep .ng-trigger{
+  top:0;
+}

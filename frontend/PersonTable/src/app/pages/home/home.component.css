@@ -1,0 +1,10 @@
+main{
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    background-color: rgb(29, 29, 29, 0.938);
+    padding: 0;
+}
