@@ -16,7 +16,7 @@ export class PersonsService implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  //anrede,name, vorname, geschlecht, nationalitaet, strasse, plz, ort, geburtsdatum, abteilung, familienstand, gehalt, iban, steuerklasse
+
   getPersonTable() {
     return this.http.get('http://127.0.0.1:8000/api/personTable/').pipe(
       tap((data: any) => {

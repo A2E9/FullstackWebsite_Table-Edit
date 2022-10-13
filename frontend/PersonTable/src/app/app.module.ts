@@ -21,7 +21,7 @@ import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CalendarModule} from 'primeng/calendar';
 import { WithUnsortDirective } from './with-unsort.directive';
 import {CardModule} from 'primeng/card';
-import { EditPersonComponent } from './component/edit-person/edit-person.component';
+
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -48,7 +48,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     PersonsComponent,
     WithUnsortDirective,
     PersonComponent,
-    EditPersonComponent,
+
   ],
   imports: [
     BrowserModule,

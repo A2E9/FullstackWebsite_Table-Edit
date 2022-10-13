@@ -205,23 +205,6 @@
     </ng-template>
   </p-table>
 
-  <!-- 
-  Vorname, Namme, IBAN, Abteilung, Nationalität, Strasse, plz, ort - input
-  Anrede dropdown, Steuerklasse dropdown,
-  Familienstand category
-  Gehalt price
-  Geburtsdatum datepicker 
-
-  Anrede Vorname Nachname
-  Nationalität Geburtsdatum 
-  Familienstand 
-  Strasse PLZ Ort
-
-  Abteilung
-  Gehalt Steuerklasse
-  IBAN
--->
-
   <p-dialog
     [(visible)]="personDia"
     [style]="{ width: '550px' }"
@@ -229,6 +212,7 @@
     [modal]="true"
     styleClass="p-fluid"
   >
+  
     <ng-template pTemplate="content">
       <div class="field flex justify-content-between">
         <div class="flex flex-column">
@@ -476,5 +460,6 @@
         (click)="savePerson()"
       ></button>
     </ng-template>
+
   </p-dialog>
 </main>
