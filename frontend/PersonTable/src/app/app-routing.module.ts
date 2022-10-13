@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'persons', component: PersonsComponent },
   { path: 'person/:id', component: PersonComponent },
   // { path: '**', redirectTo: '/home' },
-  {path: 'person/:id/edit', component: EditPersonComponent},
+  { path: 'person/edit/:id', component: EditPersonComponent },
+  { path: 'person/edit', component: EditPersonComponent },
+  { path: 'edit/:id', component: EditPersonComponent },
 ];
 
 @NgModule({

@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PersonsComponent } from './pages/persons/persons.component';
 import { PersonComponent } from './pages/person/person.component';
-import { HttpClientModule, HttpClient  } from '@angular/common/http';
+import { HttpClientModule  } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-
 
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
 import {TableModule} from 'primeng/table';
@@ -23,6 +22,21 @@ import {CalendarModule} from 'primeng/calendar';
 import { WithUnsortDirective } from './with-unsort.directive';
 import {CardModule} from 'primeng/card';
 import { EditPersonComponent } from './component/edit-person/edit-person.component';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
+import {KeyFilterModule} from 'primeng/keyfilter';
+import {MessageModule} from 'primeng/message';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {ToolbarModule} from 'primeng/toolbar';
+import {RadioButtonModule} from 'primeng/radiobutton';
+
+
+
+
 
 
 
@@ -34,8 +48,7 @@ import { EditPersonComponent } from './component/edit-person/edit-person.compone
     PersonsComponent,
     WithUnsortDirective,
     PersonComponent,
-    EditPersonComponent
-
+    EditPersonComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +66,18 @@ import { EditPersonComponent } from './component/edit-person/edit-person.compone
     BrowserAnimationsModule,
     CalendarModule,
     CardModule,
-
+    DynamicDialogModule,
+    DialogModule,
+    ConfirmDialogModule,
+    ToastModule,
+    KeyFilterModule,
+    MessageModule,
+    NoopAnimationsModule,
+    FormsModule,
+    InputTextModule,
+    ToolbarModule,
+    RadioButtonModule
+    
 
   ],
   providers: [],

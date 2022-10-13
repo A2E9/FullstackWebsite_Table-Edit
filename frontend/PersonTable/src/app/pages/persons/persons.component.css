@@ -18,6 +18,10 @@ main {
   /* width: fit-content; */
   width:135px;
 }
+
+:host ::ng-deep .p-inputmask{
+width: 100%!important;
+}
 :host ::ng-deep .p-datepicker{
   width: 500px;
   top:0;
