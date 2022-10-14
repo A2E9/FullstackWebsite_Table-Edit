@@ -14,7 +14,6 @@ import {
   animate,
 } from '@angular/animations';
 
-
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',

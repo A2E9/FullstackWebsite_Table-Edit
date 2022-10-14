@@ -381,72 +381,69 @@
     <p-dialog [(visible)]="personDia" [style]="{width: '550px'}" header="Person Details" [modal]="true" styleClass="p-fluid">
       <ng-template pTemplate="content">
         
-          <div class="field flex justify-content-between">
-            <div class="flex flex-column">
-              <label for="inventoryStatus">Anrede</label>
-              <p-dropdown [(ngModel)]="person.anrede" inputId="anrede" [options]="anreden" placeholder="Select">
-              </p-dropdown>
-            </div>
-  
-            <div class="flex flex-column">
-              <label for="vorname">Vorname</label>
-              <input type="text" pInputText id="vorname" [(ngModel)]="person.vorname" required autofocus />
-              <small class="p-error" *ngIf="submitted && !person.vorname">Vorname is required.</small>
-            </div>
-              <div class="flex flex-column"> 
-  
-                <label for="name">Nachname</label>
-                <input type="text" pInputText id="name" [(ngModel)]="person.name" required autofocus />
-                <small class="p-error" *ngIf="submitted && !person.name">Nachname is required.</small>
-              </div>
+        <div class="field flex justify-content-between">
+          <div class="flex flex-column">
+            <label for="inventoryStatus">Anrede</label>
+            <p-dropdown [(ngModel)]="person.anrede" inputId="anrede" [options]="anreden" placeholder="Select">
+            </p-dropdown>
           </div>
-  
-          <div class="field flex justify-content-between">
-            <div class="flex flex-column ">
-              <label for="geburtsdatum">Geburtsdatum</label>
-              <p-calendar [(ngModel)]="person.geburtsdatum" dateFormat="dd.mm.yy" [showIcon]="true" [style]="{ width: '140px' }"></p-calendar>
-              <small class="p-error" *ngIf="submitted && !person.geburtsdatum">Geburtsdatum is required.</small>
-            </div>
-            <div class="flex flex-column">
-              <label for="geschlecht" class="text-center">Geschlecht</label>
-              <p-dropdown [(ngModel)]="person.geschlecht" inputId="inventoryStatus" [options]="geschlechten" placeholder="Select" style="width: 150px" >
-              </p-dropdown>
-              <small class="p-error" *ngIf="submitted && !person.geschlecht">Geschlecht is required.</small>
-            </div>
-  
-            
-  
-            
-  
-            <div class="flex flex-column ">
-              <label for="nationalitaet">Nationalität</label>
-              <input type="text" pInputText id="nationalitaet"  [(ngModel)]="person.nationalitaet" />
+
+          <div class="flex flex-column">
+            <label for="vorname">Vorname</label>
+            <input type="text" pInputText id="vorname" [(ngModel)]="person.vorname" required autofocus />
+            <small class="p-error" *ngIf="submitted && !person.vorname">Vorname is required.</small>
+          </div>
+
+          <div class="flex flex-column"> 
+            <label for="name">Nachname</label>
+            <input type="text" pInputText id="name" [(ngModel)]="person.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !person.name">Nachname is required.</small>
+          </div>
+        </div>
+
+        <div class="field flex justify-content-between">
+          <div class="flex flex-column ">
+            <label for="geburtsdatum">Geburtsdatum</label>
+            <p-calendar [(ngModel)]="person.geburtsdatum" dateFormat="dd.mm.yy" [showIcon]="true" [style]="{ width: '140px' }"></p-calendar>
+            <small class="p-error" *ngIf="submitted && !person.geburtsdatum">Geburtsdatum is required.</small>
+          </div>
+          <div class="flex flex-column">
+            <label for="geschlecht" class="text-center">Geschlecht</label>
+            <p-dropdown [(ngModel)]="person.geschlecht" inputId="inventoryStatus" [options]="geschlechten" placeholder="Select" style="width: 150px" >
+            </p-dropdown>
+            <small class="p-error" *ngIf="submitted && !person.geschlecht">Geschlecht is required.</small>
+          </div>
+
+          <div class="flex flex-column ">
+            <label for="nationalitaet">Nationalität</label>
+            <input type="text" pInputText id="nationalitaet"  [(ngModel)]="person.nationalitaet" />
+      
+          </div>
+        </div>
         
-            </div>
-          </div>
-          
-          <div class="field">
-            <label class="mb-3">Familienstand</label>
-            <div class=" flex justify-content-between">
-                
-                <div class="field-radiobutton col-4">
-                    <p-radioButton id="familienstand2" name="familienstand" value="verheiratet" [(ngModel)]="person.familienstand"></p-radioButton>
-                    <label for="category2">Verheiratet</label>
-                </div>
-                <div class="field-radiobutton col-4">
-                    <p-radioButton id="familienstand3" name="familienstand" value="geschieden" [(ngModel)]="person.familienstand"></p-radioButton>
-                    <label for="category3">Geschieden</label>
-                </div>
-                <div class="field-radiobutton col-4">
-                  <p-radioButton id="familienstand1" name="familienstand" value="ledig" [(ngModel)]="person.familienstand"></p-radioButton>
-                  <label for="category1">Ledig</label>
+        <div class="field">
+          <label class="mb-3">Familienstand</label>
+          <div class=" flex justify-content-between">
+              
+              <div class="field-radiobutton col-4">
+                  <p-radioButton id="familienstand2" name="familienstand" value="verheiratet" [(ngModel)]="person.familienstand"></p-radioButton>
+                  <label for="category2">Verheiratet</label>
               </div>
-                
+              <div class="field-radiobutton col-4">
+                  <p-radioButton id="familienstand3" name="familienstand" value="geschieden" [(ngModel)]="person.familienstand"></p-radioButton>
+                  <label for="category3">Geschieden</label>
+              </div>
+              <div class="field-radiobutton col-4">
+                <p-radioButton id="familienstand1" name="familienstand" value="ledig" [(ngModel)]="person.familienstand"></p-radioButton>
+                <label for="category1">Ledig</label>
             </div>
-            <small class="p-error" *ngIf="submitted && !person.familienstand">Familienstand is required.</small>
+        
+          </div>
+          <small class="p-error" *ngIf="submitted && !person.familienstand">Familienstand is required.</small>
         </div>
   
         <div class="field flex justify-content-between">
+
           <div class="flex flex-column">
             <label for="strasse">Strasse</label>
             <input type="text" pInputText id="strasse" [(ngModel)]="person.strasse" required autofocus />
@@ -455,37 +452,39 @@
   
           <div class="flex flex-column">
             <label for="plz">PLZ</label>
-            <!-- <input type="text" pInputText id="plz" [(ngModel)]="person.plz" required autofocus maxlength="5"/> -->
             <p-inputMask   id="plz" [(ngModel)]="person.plz"  autofocus style="width: 150px" [unmask]="true" placeholder="99999" mask="99999"> </p-inputMask>
             <small class="p-error" *ngIf="submitted && !person.plz">PLZ is required.</small>
           </div>
-            <div class="flex flex-column"> 
-  
-              <label for="ort">Ort</label>
-              <input type="text" pInputText id="ort" [(ngModel)]="person.ort" required autofocus />
-              <small class="p-error" *ngIf="submitted && !person.ort">Ort is required.</small>
-            </div>
+
+          <div class="flex flex-column"> 
+            <label for="ort">Ort</label>
+            <input type="text" pInputText id="ort" [(ngModel)]="person.ort" required autofocus />
+            <small class="p-error" *ngIf="submitted && !person.ort">Ort is required.</small>
+          </div>
+
         </div>
   
         <div class="field flex justify-content-between">
+
           <div class="flex flex-column"> 
             <label for="abteilung" class="text-center">Abteilung</label>
             <input type="text" pInputText id="abteilung" [(ngModel)]="person.abteilung" style="width:100%" />
-            
           </div>
+
           <div class="flex flex-column">
             <label for="steuerklasse" class="text-center">Steuerklasse</label>
             <p-dropdown [(ngModel)]="person.steuerklasse" inputId="inventoryStatus" [options]="steuerklassen" placeholder="Select" style="width: 250px" >
             </p-dropdown>
             <small class="p-error" *ngIf="submitted && !person.steuerklasse">Steuerklasse is required.</small>
           </div>
+
         </div>
   
         <div class="formgrid grid">
           <div class="field col flex flex-column">
               <label for="gehalt" class="text-center">Gehalt</label>
               <p-inputNumber id="gehalt" [(ngModel)]="person.gehalt" mode="currency" currency="EUR" locale="en-US" ></p-inputNumber>
-               <small class="p-error" *ngIf="submitted && !person.gehalt">Gehalt is required.</small>
+              <small class="p-error" *ngIf="submitted && !person.gehalt">Gehalt is required.</small>
           </div>
         </div>   
   
@@ -497,8 +496,8 @@
             <small class="p-error bbb" *ngIf="submitted && !person.iban">IBAN is required.</small>
           </div>
         </div>
+
     </ng-template>
-  
   
       <ng-template pTemplate="footer">
           <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="cancel('bottom')"></button>
