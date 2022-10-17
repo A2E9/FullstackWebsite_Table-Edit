@@ -3,7 +3,11 @@ import * as moment from 'moment';
 import { Table } from 'primeng/table';
 import { PersonsService } from '../../services/persons.service';
 import { Router } from '@angular/router';
-import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
+import {
+  ConfirmationService,
+  ConfirmEventType,
+  MessageService,
+} from 'primeng/api';
 
 @Component({
   selector: 'app-persons',
@@ -30,6 +34,7 @@ export class PersonsComponent implements OnInit {
   steuerklassen: any[];
   anreden: any[];
   geschlechten: any[];
+  person0: any;
 
   constructor(
     private router: Router,
@@ -187,12 +192,11 @@ export class PersonsComponent implements OnInit {
 
       accept: () => {
         this.selectedPersons.forEach((person: any) => {
-          this.personService.deletePerson(person.id).subscribe( (data) => {
+          this.personService.deletePerson(person.id).subscribe((data) => {
             console.log(data);
           });
         });
         this.redirectTo('/persons'); /////////////////////////////////////////////////////////////bag
-        
       },
       reject: (type: any) => {
         switch (type) {
@@ -213,11 +217,9 @@ export class PersonsComponent implements OnInit {
         }
       },
     });
-    
   }
 
   redirectTo(uri: string) {
-
     this.router
       .navigateByUrl('/', { skipLocationChange: false })
       .then(() => this.router.navigate([uri]));
@@ -235,55 +237,42 @@ export class PersonsComponent implements OnInit {
     this.personDia = false;
     this.submitted = false;
   }
-  
-  savePerson() {
-    console.log(this.person.iban)
-    this.submitted = true;
-    console.log(this.person);
-    //check if this values are not null or ''
 
-    // let a = document.body.classList.contains('bbb');
-    // let b = document.getElementsByClassName('p-error').length;
-    // const isEmpty = !Object.values(this.person).some((x) => x !== null && x !== '');
+  // savePerson() {
+  //   this.submitted = true;
 
-    // person.vorname
-    // person.name
-    // person.geburtsdatum
-    // person.geschlecht
-    // person.familienstand  familienstand
-    // person.strasse
-    // person.plz
-    // person.ort
-    // person.steuerklasse
-    // person.gehalt
-    // person.iban
+  //   //check if this values are not null or ''
 
-    if (
-      this.person.vorname.trim() &&
-      this.person.name.trim() &&
-      this.person.geburtsdatum &&
-      this.person.geschlecht &&
-      this.person.familienstand &&
-      this.person.strasse.trim() &&
-      this.person.plz.trim() &&
-      this.person.ort.trim() &&
-      this.person.steuerklasse &&
-      this.person.gehalt &&
-      this.person.iban.trim()
-    ) {
-      //change dateformat to yyyy-mm-dd
-      this.person.geburtsdatum = moment(this.person.geburtsdatum).format(
-        'YYYY-MM-DD'
-      );
-      this.personService.createPerson(this.person).subscribe((data) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Person Created',
-          life: 3000,
-        });
-        this.redirectTo('/person/' + data.id);
-      });
-    }
-  }
+  //   // let a = document.body.classList.contains('bbb');
+  //   // let b = document.getElementsByClassName('p-error').length;
+  //   // const isEmpty = !Object.values(this.person).some((x) => x !== null && x !== '');
+
+  //   if (
+  //     this.person.vorname.trim() &&
+  //     this.person.name.trim() &&
+  //     this.person.geburtsdatum &&
+  //     this.person.geschlecht &&
+  //     this.person.familienstand &&
+  //     this.person.strasse.trim() &&
+  //     this.person.plz.trim() &&
+  //     this.person.ort.trim() &&
+  //     this.person.steuerklasse &&
+  //     this.person.gehalt &&
+  //     this.person.iban.trim()
+  //   ) {
+  //     //change dateformat to yyyy-mm-dd
+  //     this.person.geburtsdatum = moment(this.person.geburtsdatum).format(
+  //       'YYYY-MM-DD'
+  //     );
+  //     this.personService.createPerson(this.person).subscribe((data) => {
+  //       this.messageService.add({
+  //         severity: 'success',
+  //         summary: 'Successful',
+  //         detail: 'Person Created',
+  //         life: 3000,
+  //       });
+  //       this.redirectTo('/person/' + data.id);
+  //     });
+  //   }
+  // }
 }

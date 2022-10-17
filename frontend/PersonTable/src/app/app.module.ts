@@ -33,6 +33,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {ToolbarModule} from 'primeng/toolbar';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import { EditComponent } from './component/edit/edit.component';
 
 
 
@@ -48,6 +49,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     PersonsComponent,
     WithUnsortDirective,
     PersonComponent,
+    EditComponent,
 
   ],
   imports: [

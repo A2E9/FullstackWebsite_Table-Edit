@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonsService } from 'src/app/services/persons.service';
 import {
@@ -13,6 +13,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+// import { FooService } from 'src/app/services/foo.service';
 
 @Component({
   selector: 'app-person',
@@ -42,8 +43,10 @@ export class PersonComponent implements OnInit {
   personID: number = 0;
   persons: any;
   person!: any;
+
+
   personFake!: any;
-  display: boolean = false;
+
   position!: string;
   submitted: boolean = false;
 
@@ -62,7 +65,7 @@ export class PersonComponent implements OnInit {
     private persServ: PersonsService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
   ) {
     this.route.params.subscribe((params) => (this.personID = params['id']));
 
@@ -104,6 +107,8 @@ export class PersonComponent implements OnInit {
       },
       complete: () => {},
     });
+
+    console.log(this.personDia)
   }
 
   lastPage() {
@@ -114,65 +119,74 @@ export class PersonComponent implements OnInit {
   editPerson() {
     // this.router.navigate(['/person/edit/' + this.personID]); //edit-site person/edit/1
     //   // window.history.pushState('', '', '***************************' + this.person.id); //page reload Error
-    this.display = true;
+
     this.submitted = false;
     this.personDia = true;
+
+    console.log(this);
+    console.log(this.personDia)
+    
   }
 
-  confirm(position: string) {
-    this.position = position;
-    this.confirmationService.confirm({
-      message: 'Do you want to confirm this record?',
-      header: 'Confirmation',
-      icon: 'pi pi-spin pi-info-circle',
-      accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'Record confirmed',
-        });
-        this.persServ
-          .updatePerson(this.personID, this.person)
-          .subscribe((data) => {
-            this.person = data;
-          });
-        this.display = false;
-        this.personDia = false;
-        this.submitted = false;
-      },
-      reject: (type: any) => {
-        switch (type) {
-          case ConfirmEventType.REJECT:
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Rejected',
-              detail: 'You have rejected',
-            });
-            break;
-          case ConfirmEventType.CANCEL:
-            this.messageService.add({
-              severity: 'warn',
-              summary: 'Cancelled',
-              detail: 'You have cancelled',
-            });
-            break;
-        }
-      },
-      key: 'positionDialog',
-    });
-  }
+  // confirm(position: string) {
+  //   this.position = position;
+  //   this.confirmationService.confirm({
+  //     message: 'Do you want to confirm this record?',
+  //     header: 'Confirmation',
+  //     icon: 'pi pi-spin pi-info-circle',
+  //     accept: () => {
+  //       this.messageService.add({
+  //         severity: 'info',
+  //         summary: 'Confirmed',
+  //         detail: 'Record confirmed',
+  //       });
+  //       this.persServ
+  //         .updatePerson(this.personID, this.person)
+  //         .subscribe((data) => {
+  //           this.person = data;
+  //         });
 
-  cancel(position: string) {
-    this.position = position;
-    this.redirectTo('/person/' + this.personID);
-    this.display = false;
+  //       this.personDia = false;
+  //       this.submitted = false;
+  //     },
+  //     reject: (type: any) => {
+  //       switch (type) {
+  //         case ConfirmEventType.REJECT:
+  //           this.messageService.add({
+  //             severity: 'error',
+  //             summary: 'Rejected',
+  //             detail: 'You have rejected',
+  //           });
+  //           this.personDia = false;
+  //           this.submitted = false;
+  //           break;
+  //         case ConfirmEventType.CANCEL:
+  //           this.messageService.add({
+  //             severity: 'warn',
+  //             summary: 'Cancelled',
+  //             detail: 'You have cancelled',
+  //           });
+  //           this.personDia = false;
+  //           this.submitted = false;
+  //           break;
+  //       }
+  //     },
+  //     key: 'positionDialog',
+  //   });
+  // }
 
-    this.personDia = false;
-    this.submitted = false;
-  }
+  // cancel(position: string) {
+  //   this.position = position;
+  //   this.redirectTo('/person/' + this.personID);
+
+
+  //   this.personDia = false;
+  //   this.submitted = false;
+  // }
 
   deletePerson(position: string) {
     this.position = position;
+
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
@@ -191,6 +205,7 @@ export class PersonComponent implements OnInit {
               summary: 'Rejected',
               detail: 'You have rejected',
             });
+            
             break;
         }
       },
@@ -206,13 +221,13 @@ export class PersonComponent implements OnInit {
     // window.location.reload();
   }
 
-  newPerson() {
-    this.submitted = false;
-    this.personDia = true;
-  }
+  // newPerson() {
+  //   this.submitted = false;
+  //   this.personDia = true;
+  // }
 
-  hideDialog() {
-    this.personDia = false;
-    this.submitted = false;
-  }
+  // hideDialog() {
+  //   this.personDia = false;
+  //   this.submitted = false;
+  // }
 }

@@ -1,55 +1,30 @@
+<p-toast></p-toast>
+
 <main>
-  <p-table
-    #dt
-    [columns]="newCols"
-    [value]="persons"
-    responsiveLayout="scroll"
-    [paginator]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [(selection)]="selectedPersons"
-    appWithUnsort
-    [globalFilterFields]="[
+  <p-table #dt [columns]="newCols" [value]="persons" responsiveLayout="scroll" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [(selection)]="selectedPersons" appWithUnsort [globalFilterFields]="[
       newCols[0].field,
       newCols[1].field,
       newCols[2].field,
       newCols[3].field
-    ]"
-  >
+    ]">
     <!-- selectionMode="single"  (onRowSelect)="navPerson($event)"  stateStorage="local" stateKey="personTable" -->
     <ng-template pTemplate="caption">
       <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
       <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
-          <button
-            pButton
-            pRipple
-            label="New"
-            icon="pi pi-plus"
-            class="p-button-success mr-2"
-            (click)="newPerson()"
-          ></button>
-          <button
-            pButton
-            pRipple
-            label="Delete"
-            icon="pi pi-trash"
-            class="p-button-danger"
-            (click)="deleteSelectePersons()"
-            [disabled]="!selectedPersons || !selectedPersons.length"
-          ></button>
+          <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="newPerson()"></button>
+          <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
+            (click)="deleteSelectePersons()" [disabled]="!selectedPersons || !selectedPersons.length"></button>
         </ng-template>
 
         <ng-template pTemplate="right">
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
-            <input
-              pInputText
-              type="text"
-              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-              placeholder="Search keyword"
-            />
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search keyword" />
           </span>
         </ng-template>
       </p-toolbar>
@@ -62,14 +37,11 @@
         [style]="{ minWidth: '200px' }"
         placeholder="Choose Columns"
       ></p-multiSelect> -->
-      <div
-        class="flex yellow-container"
-        style="
+      <div class="flex yellow-container" style="
           display: flex;
           justify-content: space-between;
           align-items: center;
-        "
-      >
+        ">
         <h5 style="font-size: larger">Personen Table</h5>
       </div>
     </ng-template>
@@ -79,11 +51,7 @@
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th
-          *ngFor="let col of columns"
-          style="white-space: nowrap"
-          [pSortableColumn]="col.field"
-        >
+        <th *ngFor="let col of columns" style="white-space: nowrap" [pSortableColumn]="col.field">
           {{ col.header }}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
@@ -91,7 +59,7 @@
       </tr>
 
       <!-- <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field" >
+         <th *ngFor="let col of columns" [ngSwitch]="col.field" >
 
           <div
             *ngIf="
@@ -171,7 +139,7 @@
 
 
         </th>
-      </tr> -->
+      </tr>  -->
     </ng-template>
 
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -186,112 +154,57 @@
         </td>
 
         <td>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success mr-2"
-            (click)="navPerson(rowData.id)"
-          ></button>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deletePerson(rowData.id)"
-          ></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            (click)="navPerson(rowData.id)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deletePerson(rowData.id)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 
-  <p-dialog
-    [(visible)]="personDia"
-    [style]="{ width: '550px' }"
-    header="Person Details"
-    [modal]="true"
-    styleClass="p-fluid"
-  >
-  
+
+  <!-- <p-dialog [(visible)]="personDia" [style]="{ width: '550px' }" header="Person Details" [modal]="true"
+    styleClass="p-fluid">
+
     <ng-template pTemplate="content">
       <div class="field flex justify-content-between">
         <div class="flex flex-column">
           <label for="inventoryStatus">Anrede</label>
-          <p-dropdown
-            [(ngModel)]="person.anrede"
-            inputId="anrede"
-            [options]="anreden"
-            placeholder="Select"
-          >
+          <p-dropdown [(ngModel)]="person.anrede" inputId="anrede" [options]="anreden" placeholder="Select">
           </p-dropdown>
         </div>
 
         <div class="flex flex-column">
           <label for="vorname">Vorname</label>
-          <input
-            type="text"
-            pInputText
-            id="vorname"
-            [(ngModel)]="person.vorname"
-            required
-            autofocus
-          />
-          <small class="p-error" *ngIf="submitted && !person.vorname"
-            >Vorname is required.</small
-          >
+          <input type="text" pInputText id="vorname" [(ngModel)]="person.vorname" required autofocus />
+          <small class="p-error" *ngIf="submitted && !person.vorname">Vorname is required.</small>
         </div>
         <div class="flex flex-column">
           <label for="name">Nachname</label>
-          <input
-            type="text"
-            pInputText
-            id="name"
-            [(ngModel)]="person.name"
-            required
-            autofocus
-          />
-          <small class="p-error" *ngIf="submitted && !person.name"
-            >Nachname is required.</small
-          >
+          <input type="text" pInputText id="name" [(ngModel)]="person.name" required autofocus />
+          <small class="p-error" *ngIf="submitted && !person.name">Nachname is required.</small>
         </div>
       </div>
 
       <div class="field flex justify-content-between">
         <div class="flex flex-column">
           <label for="geburtsdatum">Geburtsdatum</label>
-          <p-calendar
-            [(ngModel)]="person.geburtsdatum"
-            dateFormat="dd.mm.yy"
-            [showIcon]="true"
-            [style]="{ width: '140px' }"
-          ></p-calendar>
-          <small class="p-error" *ngIf="submitted && !person.geburtsdatum"
-            >Geburtsdatum is required.</small
-          >
+          <p-calendar [(ngModel)]="person.geburtsdatum" dateFormat="dd.mm.yy" [showIcon]="true"
+            [style]="{ width: '140px' }"></p-calendar>
+          <small class="p-error" *ngIf="submitted && !person.geburtsdatum">Geburtsdatum is required.</small>
         </div>
         <div class="flex flex-column">
           <label for="geschlecht" class="text-center">Geschlecht</label>
-          <p-dropdown
-            [(ngModel)]="person.geschlecht"
-            inputId="inventoryStatus"
-            [options]="geschlechten"
-            placeholder="Select"
-            style="width: 150px"
-          >
+          <p-dropdown [(ngModel)]="person.geschlecht" inputId="inventoryStatus" [options]="geschlechten"
+            placeholder="Select" style="width: 150px">
           </p-dropdown>
-          <small class="p-error" *ngIf="submitted && !person.geschlecht"
-            >Geschlecht is required.</small
-          >
+          <small class="p-error" *ngIf="submitted && !person.geschlecht">Geschlecht is required.</small>
         </div>
 
         <div class="flex flex-column">
           <label for="nationalitaet">Nationalität</label>
-          <input
-            type="text"
-            pInputText
-            id="nationalitaet"
-            [(ngModel)]="person.nationalitaet"
-          />
+          <input type="text" pInputText id="nationalitaet" [(ngModel)]="person.nationalitaet" />
         </div>
       </div>
 
@@ -299,167 +212,87 @@
         <label class="mb-3">Familienstand</label>
         <div class="flex justify-content-between">
           <div class="field-radiobutton col-4">
-            <p-radioButton
-              id="familienstand2"
-              name="familienstand"
-              value="verheiratet"
-              [(ngModel)]="person.familienstand"
-            ></p-radioButton>
+            <p-radioButton id="familienstand2" name="familienstand" value="verheiratet"
+              [(ngModel)]="person.familienstand"></p-radioButton>
             <label for="category2">Verheiratet</label>
           </div>
           <div class="field-radiobutton col-4">
-            <p-radioButton
-              id="familienstand3"
-              name="familienstand"
-              value="geschieden"
-              [(ngModel)]="person.familienstand"
-            ></p-radioButton>
+            <p-radioButton id="familienstand3" name="familienstand" value="geschieden"
+              [(ngModel)]="person.familienstand"></p-radioButton>
             <label for="category3">Geschieden</label>
           </div>
           <div class="field-radiobutton col-4">
-            <p-radioButton
-              id="familienstand1"
-              name="familienstand"
-              value="ledig"
-              [(ngModel)]="person.familienstand"
-            ></p-radioButton>
+            <p-radioButton id="familienstand1" name="familienstand" value="ledig" [(ngModel)]="person.familienstand">
+            </p-radioButton>
             <label for="category1">Ledig</label>
           </div>
         </div>
-        <small class="p-error" *ngIf="submitted && !person.familienstand"
-          >Familienstand is required.</small
-        >
+        <small class="p-error" *ngIf="submitted && !person.familienstand">Familienstand is required.</small>
       </div>
 
       <div class="field flex justify-content-between">
         <div class="flex flex-column">
           <label for="strasse">Strasse</label>
-          <input
-            type="text"
-            pInputText
-            id="strasse"
-            [(ngModel)]="person.strasse"
-            required
-            autofocus
-          />
-          <small class="p-error" *ngIf="submitted && !person.strasse"
-            >Strasse is required.</small
-          >
+          <input type="text" pInputText id="strasse" [(ngModel)]="person.strasse" required autofocus />
+          <small class="p-error" *ngIf="submitted && !person.strasse">Strasse is required.</small>
         </div>
 
         <div class="flex flex-column">
           <label for="plz">PLZ</label>
-          <input
-            type="text"
-            pInputText
-            id="plz"
-            [(ngModel)]="person.plz"
-            required
-            autofocus
-            maxlength="5"
-          />
-          <small class="p-error" *ngIf="submitted && !person.plz"
-            >PLZ is required.</small
-          >
+          <input type="text" pInputText id="plz" [(ngModel)]="person.plz" required autofocus maxlength="5" />
+          <small class="p-error" *ngIf="submitted && !person.plz">PLZ is required.</small>
         </div>
         <div class="flex flex-column">
           <label for="ort">Ort</label>
-          <input
-            type="text"
-            pInputText
-            id="ort"
-            [(ngModel)]="person.ort"
-            required
-            autofocus
-          />
-          <small class="p-error" *ngIf="submitted && !person.ort"
-            >Ort is required.</small
-          >
+          <input type="text" pInputText id="ort" [(ngModel)]="person.ort" required autofocus />
+          <small class="p-error" *ngIf="submitted && !person.ort">Ort is required.</small>
         </div>
       </div>
 
       <div class="field flex justify-content-around">
         <div class="flex flex-column">
           <label for="abteilung" class="text-center">Abteilung</label>
-          <input
-            type="text"
-            pInputText
-            id="abteilung"
-            [(ngModel)]="person.abteilung"
-            style="width: 100%"
-          />
+          <input type="text" pInputText id="abteilung" [(ngModel)]="person.abteilung" style="width: 100%" />
         </div>
         <div class="flex flex-column">
           <label for="steuerklasse" class="text-center">Steuerklasse</label>
-          <p-dropdown
-            [(ngModel)]="person.steuerklasse"
-            inputId="inventoryStatus"
-            [options]="steuerklassen"
-            placeholder="Select"
-            style="width: 250px"
-          >
+          <p-dropdown [(ngModel)]="person.steuerklasse" inputId="inventoryStatus" [options]="steuerklassen"
+            placeholder="Select" style="width: 250px">
           </p-dropdown>
-          <small class="p-error" *ngIf="submitted && !person.steuerklasse"
-            >Steuerklasse is required.</small
-          >
+          <small class="p-error" *ngIf="submitted && !person.steuerklasse">Steuerklasse is required.</small>
         </div>
       </div>
 
       <div class="formgrid grid">
         <div class="field col flex flex-column">
           <label for="gehalt" class="text-center">Gehalt</label>
-          <p-inputNumber
-            id="gehalt"
-            [(ngModel)]="person.gehalt"
-            mode="currency"
-            currency="EUR"
-            locale="en-US"
-          ></p-inputNumber>
-          <small class="p-error" *ngIf="submitted && !person.gehalt"
-            >Gehalt is required.</small
-          >
+          <p-inputNumber id="gehalt" [(ngModel)]="person.gehalt" mode="currency" currency="EUR" locale="en-US">
+          </p-inputNumber>
+          <small class="p-error" *ngIf="submitted && !person.gehalt">Gehalt is required.</small>
         </div>
       </div>
 
       <div class="field">
         <div class="flex flex-column">
           <label for="iban" class="text-center">IBAN</label>
-          <p-inputMask
-            pInputText
-            id="iban"
-            [(ngModel)]="person.iban"
-            autofocus
-            style="width: 100%"
-            [unmask]="true"
-            placeholder="AA-99999999999999999999999999999999"
-            mask="a*-99999999999999999999999999999999"
-          >
+          <p-inputMask pInputText id="iban" [(ngModel)]="person.iban" autofocus style="width: 100%" [unmask]="true"
+            placeholder="AA-99999999999999999999999999999999" mask="a*-99999999999999999999999999999999">
           </p-inputMask>
-          <small class="p-error bbb" *ngIf="submitted && !person.iban"
-            >IBAN is required.</small
-          >
+          <small class="p-error bbb" *ngIf="submitted && !person.iban">IBAN is required.</small>
         </div>
       </div>
+
+
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button
-        pButton
-        pRipple
-        label="Cancel"
-        icon="pi pi-times"
-        class="p-button-text"
-        (click)="hideDialog()"
-      ></button>
-      <button
-        pButton
-        pRipple
-        label="Save"
-        icon="pi pi-check"
-        class="p-button-text"
-        (click)="savePerson()"
-      ></button>
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePerson()"></button>
     </ng-template>
 
-  </p-dialog>
+  </p-dialog> -->
+
+  <app-edit [(personDia)]="personDia" [(person)]="person" [newPerson]="true" (onCancel)="hideDialog()" >
+  </app-edit>
+
 </main>

@@ -14,9 +14,9 @@ main {
   padding-bottom: 0.5rem;
 }
 
-:host ::ng-deep .p-inputmask {
+/* :host ::ng-deep .p-inputmask {
   width: 100% !important;
-}
+} */
 :host ::ng-deep .p-fluid .p-inputtext {
   /* width: fit-content; */
   width: 135px;
