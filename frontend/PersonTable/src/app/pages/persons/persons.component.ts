@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { Table } from 'primeng/table';
 import { PersonsService } from '../../services/persons.service';
 import { Router } from '@angular/router';
+
 import {
   ConfirmationService,
   ConfirmEventType,
@@ -36,11 +37,35 @@ export class PersonsComponent implements OnInit {
   geschlechten: any[];
   person0: any;
 
+  value:any;
+
+  change(){
+    this.value='';
+    this.table.reset();
+  }
+
+  copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+    
+  }
+
   constructor(
     private router: Router,
     private personService: PersonsService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+
   ) {
     this.cols = [
       { field: 'id', header: 'ID' },
@@ -111,8 +136,9 @@ export class PersonsComponent implements OnInit {
       { label: 'Unbekannt', value: 'u' },
     ];
 
-    this.AllNationalitaet = [{ label: 'Leer', value: '' }];
-    this._selectedColumns = this.cols;
+    this.AllNationalitaet = [
+      { label: 'Leer', value: '' }];
+    this._selectedColumns = this.newCols;
   }
 
   ngOnInit(): void {
@@ -156,8 +182,7 @@ export class PersonsComponent implements OnInit {
         });
     }
     this.AllNationalitaet = this.AllNationalitaet.filter(
-      (v, i, a) => a.findIndex((t) => t.label === v.label) === i
-    );
+      (v, i, a) => a.findIndex((t) => t.label === v.label) === i);
   }
 
   navPerson(pID: any) {
@@ -196,7 +221,7 @@ export class PersonsComponent implements OnInit {
             console.log(data);
           });
         });
-        this.redirectTo('/persons'); /////////////////////////////////////////////////////////////bag
+        this.redirectTo('/persons'); /////////////////////////////////////////////////////////////bug
       },
       reject: (type: any) => {
         switch (type) {
@@ -233,10 +258,10 @@ export class PersonsComponent implements OnInit {
     this.personDia = true;
   }
 
-  hideDialog() {
-    this.personDia = false;
-    this.submitted = false;
-  }
+  // hideDialog() {
+  //   this.personDia = false;
+
+  // }
 
   // savePerson() {
   //   this.submitted = true;
@@ -276,3 +301,5 @@ export class PersonsComponent implements OnInit {
   //   }
   // }
 }
+
+

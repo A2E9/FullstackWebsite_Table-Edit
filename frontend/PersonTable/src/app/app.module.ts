@@ -40,8 +40,6 @@ import { EditComponent } from './component/edit/edit.component';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

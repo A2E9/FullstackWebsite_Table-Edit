@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'persons', component: PersonsComponent },
   { path: 'person/:id', component: PersonComponent },
+  { path: '**', component: PersonsComponent },
   // { path: '**', redirectTo: '/home' },
 ];
 

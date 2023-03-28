@@ -30,3 +30,7 @@ width: 100%!important;
 :host ::ng-deep .ng-trigger{
   top:0;
 }
+
+.cr-pointer{
+  cursor: pointer;
+}

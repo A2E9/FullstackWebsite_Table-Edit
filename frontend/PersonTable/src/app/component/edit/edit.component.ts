@@ -166,6 +166,10 @@ export class EditComponent implements OnInit {
 
   cancel(position: string) {
     // this.position = position;
+
+    if(this.router.url != '/person/' + this.personID)
+        this.redirectTo('/persons/');
+    else
     this.redirectTo('/person/' + this.personID);
 
     // this.display = false;

@@ -18,7 +18,8 @@ export class PersonsService implements OnInit {
   }
 
   getPersonTable() {
-    return this.http.get('http://127.0.0.1:8000/api/personTable/').pipe(
+    return this.http.get('http://127.0.0.1:8000/api/personTable/')
+    .pipe(
       tap((data: any) => {
         this.persons = data;
 
